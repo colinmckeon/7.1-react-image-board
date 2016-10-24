@@ -1,0 +1,29 @@
+
+// Bootstrap Variables
+$icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
+
+// Import Bootstrap
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+.image-holder{
+  width: 100%;
+  height: 350px;
+  background-color: red;
+}
+
+.text-holder{
+  width: 100%;
+  height: 150px;
+  background-color: green;
+}
