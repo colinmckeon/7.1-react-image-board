@@ -49,7 +49,7 @@ var ActualForm = React.createClass({
 });
 
 
-var ImageForm = React.createClass({
+var AppComponent = React.createClass({
   getInitialState: function(){
     var imagesCollection =  new ImagesCollection();
     return {
@@ -67,7 +67,7 @@ var ImageForm = React.createClass({
   },
   render: function(){
     var imagesDisplayed = this.state.imagesCollection.map(function(){
-      return <Listing />
+      return <Listing key={image.get("_id")} model={image} />
     });
     return (
       <div className="header well">
@@ -90,5 +90,5 @@ var ImageForm = React.createClass({
 
 
 module.exports = {
-  ImageForm: ImageForm
+  AppComponent: AppComponent
 };
