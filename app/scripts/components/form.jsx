@@ -19,7 +19,7 @@ var ImageForm = React.createClass({
       var display = (
         <div className="container">
           <div className="row">
-            <div className="col-md-6 col-md-offset-3">
+            <div className="col-sm-6 col-sm-offset-3">
 
               <form id="edit-form">
                 <input id="image-url" className="form-control" type="text" name="url" placeholder="Image URL" value=""/>
@@ -51,4 +51,4 @@ var ImageForm = React.createClass({
 
 module.exports = {
   ImageForm: ImageForm
-}
+};
