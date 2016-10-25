@@ -2,13 +2,15 @@ var React = require('react');
 var Backbone = require('backbone');
 var Listing = require('./listing.jsx').ListingComponent;
 var ImagesCollection = require('../models/model.js').ImagesCollection;
+var Images = require('../models/model.js').Images;
+
 
 var ActualForm = React.createClass({
   getInitialState: function(){
     return {
-      url: '',
-      caption: ''
-    }
+      url: this.props.model.get('url'),
+      caption: this.props.model.get('caption')
+    };
   },
   handleSubmit: function(event){
     event.preventDefault();
@@ -17,6 +19,7 @@ var ActualForm = React.createClass({
 
     // this.props.collection.create(newImage);
     this.setState({url: '', caption: ''});
+    this.props.handleSubmit(newImage);// pushes the input up to the app
   },
   handleUrlChange: function(event){
     event.preventDefault();
@@ -51,10 +54,18 @@ var ActualForm = React.createClass({
 
 var AppComponent = React.createClass({
   getInitialState: function(){
+    var self = this;
     var imagesCollection =  new ImagesCollection();
+    var imagesModel = new Images();
+
+    imagesCollection.fetch().then(function(){
+      self.setState({collection: imagesCollection});
+    });
+
     return {
       showForm: false,
-      imagesCollection: imagesCollection
+      imagesCollection: imagesCollection,
+      model: imagesModel
     }
   },
   handleClick: function(event){
@@ -65,9 +76,16 @@ var AppComponent = React.createClass({
     // this.showForm = !this.showForm;
     // this.forceUpdate();
   },
+  addImage: function(imagesModel){
+    this.state.collection.create(imagesModel);
+    this.setState({collection: this.state.collection});
+  },
   render: function(){
     var imagesDisplayed = this.state.imagesCollection.map(function(){
-      return <Listing key={image.get("_id")} model={image} />
+      return
+        <Listing
+          key={image.get("_id")}
+          model={image} />
     });
     return (
       <div className="header well">
@@ -76,7 +94,7 @@ var AppComponent = React.createClass({
             <div className="row">
               <div className="col-sm-6 col-sm-offset-3">
 
-                {this.state.showForm ? <ActualForm /> : null}
+                {this.state.showForm ? <ActualForm model={this.state.model} handleSubmit={this.addImage} /> : null}
                 {imagesDisplayed}
 
               </div>
