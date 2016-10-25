@@ -43,7 +43,7 @@ var ActualForm = React.createClass({
         <textarea onChange={this.handleCaptionChange} id="image-caption" className="form-control" type="text" name="caption" placeholder="Image Caption" rows="4" value={this.state.caption}/>
         <br/>
         <div className="dos-btns">
-          <input className="btn cancel-button" type="submit" name="cancel" value="CANCEL"/>
+          <button className="btn cancel-button">CANCEL</button>
           <button className="btn btn-success" type="submit"><i className="fa fa-picture-o" aria-hidden="true"></i>&nbsp;ADD IMAGE</button>
         </div>
       </form>
@@ -81,25 +81,30 @@ var AppComponent = React.createClass({
     this.setState({collection: this.state.collection});
   },
   render: function(){
-    var imagesDisplayed = this.state.imagesCollection.map(function(){
-      return
+    var imagesDisplayed = this.state.imagesCollection.map(function(image){
+      // console.log(image.get("_id"));
+      var key = image.get("_id") || image.cid;
+      return(
         <Listing
-          key={image.get("_id")}
+          key={key}
           model={image} />
+      );
     });
     return (
-      <div className="header well">
-        <button className="btn head-button" onClick={this.handleClick}><i className="fa fa-plus-circle" aria-hidden="true"></i></button>
-          <div className="container">
-            <div className="row">
-              <div className="col-sm-6 col-sm-offset-3">
+      <div>
+        <div className="header well">
+          <button className="btn head-button" onClick={this.handleClick}><i className="fa fa-plus-circle" aria-hidden="true"></i></button>
+            <div className="container">
+              <div className="row">
+                <div className="col-sm-6 col-sm-offset-3">
 
-                {this.state.showForm ? <ActualForm model={this.state.model} handleSubmit={this.addImage} /> : null}
-                {imagesDisplayed}
+                  {this.state.showForm ? <ActualForm model={this.state.model} handleSubmit={this.addImage} /> : null}
 
+                </div>
               </div>
             </div>
-          </div>
+        </div>
+        {imagesDisplayed}
       </div>
     );
   }

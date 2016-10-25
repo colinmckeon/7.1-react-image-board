@@ -15,7 +15,7 @@ var ListingComponent = React.createClass({
             <div className="content-holder">
 
               <div className="image-holder">
-                <img src="{imageSrc}" alt="..." />
+                <img src={imageSrc} alt="..." />
               </div>
 
               <div className="text-holder">
