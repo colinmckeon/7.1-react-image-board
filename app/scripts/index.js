@@ -2,7 +2,7 @@ var $ = require('jquery');
 var Backbone = require('backbone');
 var React = require('react');
 var ReactDOM = require('react-dom');
-var form = require('./components/form.jsx');
+var form = require('./components/form.jsx').ImageForm;
 
 //WAITS FOR DOM TO BE READY
 $(function(){
