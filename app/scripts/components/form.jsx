@@ -23,11 +23,12 @@ var ImageForm = React.createClass({
 
               <form id="edit-form">
                 <input id="image-url" className="form-control" type="text" name="url" placeholder="Image URL" value=""/>
-                <input id="image-caption" className="form-control" type="text" name="caption" placeholder="Image Caption" value=""/>
+                <br/>
+                <textarea id="image-caption" className="form-control" type="text" name="caption" placeholder="Image Caption" rows="4" value=""/>
                 <br/>
                 <div className="dos-btns">
-                  <input className="btn" type="submit" name="cancel" value="CANCEL"/>
-                  <button className="btn btn-success" type="submit"><i className="fa fa-picture-o" aria-hidden="true"></i>ADD IMAGE</button>
+                  <input className="btn cancel-button" type="submit" name="cancel" value="CANCEL"/>
+                  <button className="btn btn-success" type="submit"><i className="fa fa-picture-o" aria-hidden="true"></i>&nbsp;ADD IMAGE</button>
                 </div>
               </form>
 
