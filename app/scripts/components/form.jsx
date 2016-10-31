@@ -1,3 +1,4 @@
+var $ = require('jquery');
 var React = require('react');
 var Backbone = require('backbone');
 var Listing = require('./listing.jsx').ListingComponent;
@@ -35,6 +36,9 @@ var ActualForm = React.createClass({
       caption: event.target.value
     })
   },
+  handleClearEvent: function(){
+    $('#edit-form').trigger("reset");
+  },
   render: function(){
     return(
       <form onSubmit={this.handleSubmit} id="edit-form">
@@ -43,7 +47,7 @@ var ActualForm = React.createClass({
         <textarea onChange={this.handleCaptionChange} id="image-caption" className="form-control" type="text" name="caption" placeholder="Image Caption" rows="4" value={this.state.caption}/>
         <br/>
         <div className="dos-btns">
-          <button className="btn cancel-button">CANCEL</button>
+          <button onClick={this.handleClearEvent} className="btn cancel-button" type='button'>CANCEL</button>
           <button className="btn btn-success" type="submit"><i className="fa fa-picture-o" aria-hidden="true"></i>&nbsp;ADD IMAGE</button>
         </div>
       </form>
@@ -80,6 +84,9 @@ var AppComponent = React.createClass({
     this.state.collection.create(imagesModel);
     this.setState({collection: this.state.collection});
   },
+  handleEdit: function(model){
+    this.setState({showForm: true, imageToEdit: model});
+  },
   render: function(){
     var imagesDisplayed = this.state.imagesCollection.map(function(image){
       // console.log(image.get("_id"));
@@ -87,7 +94,8 @@ var AppComponent = React.createClass({
       return(
         <Listing
           key={key}
-          model={image} />
+          model={image}
+        />
       );
     });
     return (

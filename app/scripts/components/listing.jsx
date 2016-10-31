@@ -23,6 +23,7 @@ var ListingComponent = React.createClass({
                   <div className="del-edit">
                     <button className="btn btn-info">EDIT</button> &nbsp;&nbsp;
                     <button className="btn btn-danger">DELETE FOR ALL ETERNITY</button>
+                    <hr/>
                   </div>
               </div>
 
