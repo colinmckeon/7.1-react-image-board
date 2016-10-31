@@ -7,6 +7,11 @@ var ListingComponent = React.createClass({
     e.preventDefault();
     this.props.deleteImage(this.props.model);
   },
+
+  handleEdit: function(e){
+   this.props.handleEdit(this.props.model);
+ },
+
   render: function(){
     var imageSrc = this.props.model.get('url');
     var imageCaption = this.props.model.get('caption');
@@ -26,7 +31,7 @@ var ListingComponent = React.createClass({
                   <section id="caption-image">{imageCaption}</section>
                   <hr/>
                   <div className="del-edit">
-                    <button className="btn btn-info">EDIT</button> &nbsp;&nbsp;
+                    <button onClick={this.handleEdit} className="btn btn-info">EDIT</button> &nbsp;&nbsp;
                     <button onClick={this.handleDelete} className="btn btn-danger">DELETE FOR ALL ETERNITY</button>
 
                   </div>

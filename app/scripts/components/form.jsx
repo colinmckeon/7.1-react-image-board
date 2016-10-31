@@ -13,6 +13,14 @@ var ActualForm = React.createClass({
       caption: this.props.model.get('caption')
     };
   },
+  componentWillReceiveProps: function(nextProps){
+    if(nextProps.model){
+      this.setState({
+        url: nextProps.model.get('url'),
+        caption: nextProps.model.get('caption')
+      });
+    }
+  },
   handleSubmit: function(event){
     event.preventDefault();
     var newImage = {url: this.state.url, caption: this.state.caption};
@@ -40,6 +48,7 @@ var ActualForm = React.createClass({
     $('#edit-form').trigger("reset");
   },
   render: function(){
+    console.log(this);
     return(
       <form onSubmit={this.handleSubmit} id="edit-form">
         <input onChange={this.handleUrlChange} id="image-url" className="form-control" type="text" name="url" placeholder="Image URL" value={this.state.url}/>
@@ -70,7 +79,8 @@ var AppComponent = React.createClass({
       showForm: false,
       imagesCollection: imagesCollection,
       model: imagesModel,
-      imageToDelete: imagesModel
+      imageToDelete: imagesModel,
+      imageToEdit: false
     }
   },
   handleClick: function(event){
@@ -85,9 +95,16 @@ var AppComponent = React.createClass({
     this.state.collection.create(imagesModel);
     this.setState({collection: this.state.collection});
   },
-  // handleEdit: function(model){
-  //   this.setState({showForm: true, imageToEdit: model});
-  // },
+  handleEdit: function(model){
+    this.setState({showForm: true, imageToEdit: model});
+    alert('Edit Form Above ^^')
+  },
+  editImage: function(data){
+    this.state.imageToEdit.set(data);
+    this.state.imageToEdit.save();
+
+    this.setState({imageToEdit: false, showForm: false});
+  },
   deleteImage: function(image){
     image.destroy();
     this.setState({collection: this.state.collection});
@@ -102,6 +119,7 @@ var AppComponent = React.createClass({
           key={key}
           model={image}
           deleteImage={self.deleteImage}
+          handleEdit={self.handleEdit}
         />
       );
     });
@@ -113,7 +131,7 @@ var AppComponent = React.createClass({
               <div className="row">
                 <div className="col-sm-6 col-sm-offset-3">
 
-                  {this.state.showForm ? <ActualForm model={this.state.model} handleSubmit={this.addImage} /> : null}
+                  {this.state.showForm ? <ActualForm model={this.state.imageToEdit || this.state.model} handleSubmit={this.addImage} editImage={this.editImage} /> : null}
 
                 </div>
               </div>
