@@ -5766,12 +5766,17 @@ button.close {
 img {
   max-width: 100%; }
 
+body {
+  background: url(http://hdwallpaperbackgrounds.net/wp-content/uploads/2016/07/Blue-Background-Images-2.jpg) no-repeat center center fixed;
+  background-size: cover; }
+
 .header {
-  background-color: #486D99; }
+  background-color: #FECA40; }
 
 .head-button {
-  background-color: #486D99;
-  font-size: 45px; }
+  background-color: #FECA40;
+  font-size: 45px;
+  margin-left: 62px; }
 
 .dos-btns {
   text-align: right; }
@@ -5779,14 +5784,13 @@ img {
 .cancel-button {
   margin-right: 6px; }
 
-.image-holder {
-  width: 100%;
-  height: 350px;
-  background-color: red; }
+.colin {
+  background-color: #FECA40; }
 
-.text-holder {
-  width: 100%;
-  height: 150px;
-  background-color: green; }
+#caption-image {
+  font-size: 28px;
+  color: #0570CE;
+  font-weight: bold;
+  font-family: fantasy; }
 
 /*# sourceMappingURL=app.css.map */
