@@ -24,11 +24,11 @@ var ListingComponent = React.createClass({
               <div className="text-holder">
                   <br/>
                   <section id="caption-image">{imageCaption}</section>
-                  <br/>
+                  <hr/>
                   <div className="del-edit">
                     <button className="btn btn-info">EDIT</button> &nbsp;&nbsp;
                     <button onClick={this.handleDelete} className="btn btn-danger">DELETE FOR ALL ETERNITY</button>
-                    <hr/>
+
                   </div>
               </div>
 
