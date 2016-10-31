@@ -3,10 +3,13 @@ var Backbone = require('backbone');
 
 
 var ListingComponent = React.createClass({
+  handleDelete: function(e){
+    e.preventDefault();
+    this.props.deleteImage(this.props.model);
+  },
   render: function(){
     var imageSrc = this.props.model.get('url');
     var imageCaption = this.props.model.get('caption');
-
     return(
       <div className="container">
         <div className="row">
@@ -22,7 +25,7 @@ var ListingComponent = React.createClass({
                   {imageCaption}
                   <div className="del-edit">
                     <button className="btn btn-info">EDIT</button> &nbsp;&nbsp;
-                    <button className="btn btn-danger">DELETE FOR ALL ETERNITY</button>
+                    <button onClick={this.handleDelete} className="btn btn-danger">DELETE FOR ALL ETERNITY</button>
                     <hr/>
                   </div>
               </div>

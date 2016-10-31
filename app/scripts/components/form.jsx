@@ -69,7 +69,8 @@ var AppComponent = React.createClass({
     return {
       showForm: false,
       imagesCollection: imagesCollection,
-      model: imagesModel
+      model: imagesModel,
+      imageToDelete: imagesModel
     }
   },
   handleClick: function(event){
@@ -84,10 +85,15 @@ var AppComponent = React.createClass({
     this.state.collection.create(imagesModel);
     this.setState({collection: this.state.collection});
   },
-  handleEdit: function(model){
-    this.setState({showForm: true, imageToEdit: model});
+  // handleEdit: function(model){
+  //   this.setState({showForm: true, imageToEdit: model});
+  // },
+  deleteImage: function(image){
+    image.destroy();
+    this.setState({collection: this.state.collection});
   },
   render: function(){
+    var self = this;
     var imagesDisplayed = this.state.imagesCollection.map(function(image){
       // console.log(image.get("_id"));
       var key = image.get("_id") || image.cid;
@@ -95,6 +101,7 @@ var AppComponent = React.createClass({
         <Listing
           key={key}
           model={image}
+          deleteImage={self.deleteImage}
         />
       );
     });
