@@ -13,7 +13,7 @@ var ListingComponent = React.createClass({
     return(
       <div className="container">
         <div className="row">
-          <div className="col-md-6 col-md-offset-3">
+          <div className="col-md-6 col-md-offset-3 well colin">
 
             <div className="content-holder">
 
@@ -22,7 +22,9 @@ var ListingComponent = React.createClass({
               </div>
 
               <div className="text-holder">
-                  {imageCaption}
+                  <br/>
+                  <section id="caption-image">{imageCaption}</section>
+                  <br/>
                   <div className="del-edit">
                     <button className="btn btn-info">EDIT</button> &nbsp;&nbsp;
                     <button onClick={this.handleDelete} className="btn btn-danger">DELETE FOR ALL ETERNITY</button>

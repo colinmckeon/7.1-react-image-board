@@ -9,8 +9,6 @@ var AppComponent = require('./components/form.jsx').AppComponent;
 //WAITS FOR DOM TO BE READY
 $(function(){
 
-  // Backbone.history.start();
-
   ReactDOM.render(
     React.createElement(AppComponent),
     document.getElementById('app')
